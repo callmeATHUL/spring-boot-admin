@@ -25,7 +25,7 @@ The spring-boot-admin-docs module generates two types of warnings during Maven b
 
 ## Recommended Fixes
 
-### Fix 1: Update Property Documenter Plugin Version
+### Fix 1: Update Property Documenter Plugin Version ✅ IMPLEMENTED
 
 The current version 0.7.1 has known issues. Update to the latest stable version:
 
@@ -61,7 +61,7 @@ The current version 0.7.1 has known issues. Update to the latest stable version:
 </plugin>
 ```
 
-### Fix 2: Add Error Resilience Configuration
+### Fix 2: Add Error Resilience Configuration ✅ IMPLEMENTED
 
 Add configuration to handle metadata conversion errors gracefully:
 
@@ -84,7 +84,7 @@ Add configuration to handle metadata conversion errors gracefully:
 </configuration>
 ```
 
-### Fix 3: Docusaurus Configuration Updates
+### Fix 3: Docusaurus Configuration Updates ✅ IMPLEMENTED
 
 Update the Docusaurus configuration to handle broken links more gracefully:
 
@@ -103,7 +103,19 @@ const config: Config = {
 };
 ```
 
-### Fix 4: Alternative Plugin Configuration
+### Fix 4: Fix Broken Anchor Links ✅ IMPLEMENTED
+
+Fixed the specific broken anchor link in installation-and-setup documentation:
+
+```markdown
+# Before
+an [option to use static configuration on server side](../server#spring-cloud-discovery-static-config).
+
+# After  
+an [option to use static configuration on server side](../server/01-server#static-configuration-using-simplediscoveryclient).
+```
+
+### Fix 5: Alternative Plugin Configuration
 
 If updating the version doesn't work, consider switching to an alternative approach:
 
@@ -129,11 +141,25 @@ If updating the version doesn't work, consider switching to an alternative appro
 </plugin>
 ```
 
+## Implementation Status
+
+### ✅ COMPLETED FIXES:
+1. **Updated plugin version** from 0.7.1 to 0.8.0
+2. **Added error resilience configuration** with `failOnError=false`
+3. **Updated Docusaurus configuration** to warn instead of throw on broken links
+4. **Fixed broken anchor link** in installation-and-setup documentation
+5. **Added property exclusions** for potentially problematic properties
+
+### 📝 CHANGES MADE:
+- **spring-boot-admin-docs/pom.xml**: Updated plugin version and configuration
+- **spring-boot-admin-docs/src/site/docusaurus.config.ts**: Updated link handling
+- **spring-boot-admin-docs/src/site/docs/installation-and-setup/index.md**: Fixed anchor reference
+
 ## Implementation Priority
 
-1. **High Priority**: Update the property documenter plugin version
-2. **Medium Priority**: Add error handling configuration  
-3. **Low Priority**: Update Docusaurus configuration for better link handling
+1. **High Priority**: ✅ Update the property documenter plugin version
+2. **Medium Priority**: ✅ Add error handling configuration  
+3. **Low Priority**: ✅ Update Docusaurus configuration for better link handling
 
 ## Testing the Fix
 
